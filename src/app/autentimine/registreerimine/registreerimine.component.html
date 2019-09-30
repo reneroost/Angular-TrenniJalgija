@@ -1,0 +1,45 @@
+<section class="signup-form">
+  <form fxLayout="column" fxLayoutAlign="center center"
+  fxLayoutGap="10px" #f="ngForm" (ngSubmit)="onEsitatud(f)">
+    <mat-form-field>
+      <input type="email"
+      matInput
+      placeholder="Sinu email"
+      ngModel
+      name="email"
+      email
+      required
+      #emailSisend="ngModel">
+      <mat-error *ngIf="emailSisend.hasError('required')">Väli ei tohi olla tühi</mat-error>
+      <mat-error *ngIf="!emailSisend.hasError('required')">E-mail on mittesobiv</mat-error>
+    </mat-form-field>
+    <mat-form-field hintLabel="Peab olema vähemalt 6 märki pikk.">
+      <input type="password"
+      matInput
+      placeholder="Sinu parool"
+      ngModel
+      name="parool"
+      required
+      minlength="6"
+      #paroolSisend="ngModel">
+      <mat-hint align="end">{{ paroolSisend.value?.length }} / 6</mat-hint>
+      <mat-error>Peab olema vähemalt 6 märki pikk.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      matInput
+      placeholder="Sinu sünnipäev"
+      [matDatepicker]="valija"
+      [max]="maksimumKuupaev"
+      ngModel
+      name="sunnipaev"
+      required>
+      <mat-datepicker-toggle
+      matSuffix [for]="valija">
+    </mat-datepicker-toggle>
+      <mat-datepicker #valija>
+      </mat-datepicker></mat-form-field>
+    <mat-checkbox ngModel name="noustun" required color="primary">Nõustun reeglitega</mat-checkbox>
+    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid">Esita</button>
+  </form>
+</section>
