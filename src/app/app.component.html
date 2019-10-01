@@ -1,1 +1,32 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+
+  <mat-sidenav #kulgnavi role="navigation">
+    <p>Mina olen külgnavi</p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+
+      <div>
+        <button mat-icon-button (click)="kulgnavi.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <div><a routerLink="/">LOGO</a></div>
+      <div fxFlex fxLayout fxLayoutAlign="flex-end">
+        <ul fxLayout fxLayoutGap="10px" class="navigatsiooni-uksused">
+          <li><a routerLink="/registreerimine">Registreeru</a></li>
+          <li><a routerLink="/sisselogimine">Logi sisse</a></li>
+          <li><a routerLink="/treening">Trenn</a></li>
+        </ul>
+      </div>
+    </mat-toolbar>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
