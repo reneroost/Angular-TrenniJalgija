@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EelnevadTrennidComponent } from './eelnevad-trennid.component';
+import { EelnevadTreeningudComponent } from './eelnevad-treeningud.component';
 
-describe('EelnevadTrennidComponent', () => {
-  let component: EelnevadTrennidComponent;
-  let fixture: ComponentFixture<EelnevadTrennidComponent>;
+describe('EelnevadTreeningudComponent', () => {
+  let component: EelnevadTreeningudComponent;
+  let fixture: ComponentFixture<EelnevadTreeningudComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EelnevadTrennidComponent ]
+      declarations: [ EelnevadTreeningudComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EelnevadTrennidComponent);
+    fixture = TestBed.createComponent(EelnevadTreeningudComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

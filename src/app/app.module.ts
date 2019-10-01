@@ -7,28 +7,30 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { SisselogimineComponent } from './autentimine/sisselogimine/sisselogimine.component';
-import { TreenimineComponent } from './treenimine/treenimine.component';
-import { PraeguneTrennComponent } from './treenimine/praegune-trenn/praegune-trenn.component';
-import { UusTrennComponent } from './treenimine/uus-trenn/uus-trenn.component';
-import { EelnevadTrennidComponent } from './treenimine/eelnevad-trennid/eelnevad-trennid.component';
 import { TeretulemastComponent } from './teretulemast/teretulemast.component';
 import { AppMarsruutimineModule } from './app-marsruutimine.module';
 import { RegistreerimineComponent } from './autentimine/registreerimine/registreerimine.component';
 import { PaisComponent } from './navigatsioon/pais/pais.component';
 import { KulgnaviNimekiriComponent } from './navigatsioon/kulgnavi-nimekiri/kulgnavi-nimekiri.component';
+import { UusTreeningComponent } from './treening/uus-treening/uus-treening.component';
+import { PraeguneTreeningComponent } from './treening/praegune-treening/praegune-treening.component';
+import { EelnevadTreeningudComponent } from './treening/eelnevad-treeningud/eelnevad-treeningud.component';
+import { TreeningComponent } from './treening/treening.component';
+import { PeataTreeningComponent } from './treening/praegune-treening/peata-treening.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SisselogimineComponent,
     RegistreerimineComponent,
-    TreenimineComponent,
-    PraeguneTrennComponent,
-    UusTrennComponent,
-    EelnevadTrennidComponent,
     TeretulemastComponent,
     PaisComponent,
-    KulgnaviNimekiriComponent
+    KulgnaviNimekiriComponent,
+    UusTreeningComponent,
+    PraeguneTreeningComponent,
+    EelnevadTreeningudComponent,
+    TreeningComponent,
+    PeataTreeningComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { KulgnaviNimekiriComponent } from './navigatsioon/kulgnavi-nimekiri/kulg
     ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PeataTreeningComponent]
 })
 export class AppModule { }

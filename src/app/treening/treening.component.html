@@ -1,0 +1,9 @@
+<mat-tab-group *ngIf="!treeningKaib">
+  <mat-tab label="Uus harjutus">
+    <app-uus-treening (treeningAlusta)="treeningKaib = true"></app-uus-treening>
+  </mat-tab>
+  <mat-tab label="Eelnevad harjutused">
+    <app-eelnevad-treeningud></app-eelnevad-treeningud>
+  </mat-tab>
+</mat-tab-group>
+<app-praegune-treening *ngIf="treeningKaib" (treeninguLopp)="treeningKaib = false"></app-praegune-treening>
