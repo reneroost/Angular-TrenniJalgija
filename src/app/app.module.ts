@@ -14,6 +14,8 @@ import { EelnevadTrennidComponent } from './treenimine/eelnevad-trennid/eelnevad
 import { TeretulemastComponent } from './teretulemast/teretulemast.component';
 import { AppMarsruutimineModule } from './app-marsruutimine.module';
 import { RegistreerimineComponent } from './autentimine/registreerimine/registreerimine.component';
+import { PaisComponent } from './navigatsioon/pais/pais.component';
+import { KulgnaviNimekiriComponent } from './navigatsioon/kulgnavi-nimekiri/kulgnavi-nimekiri.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RegistreerimineComponent } from './autentimine/registreerimine/registre
     PraeguneTrennComponent,
     UusTrennComponent,
     EelnevadTrennidComponent,
-    TeretulemastComponent
+    TeretulemastComponent,
+    PaisComponent,
+    KulgnaviNimekiriComponent
   ],
   imports: [
     BrowserModule,

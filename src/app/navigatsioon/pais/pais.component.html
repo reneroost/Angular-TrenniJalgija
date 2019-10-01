@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+
+    <div fxHide.gt-xs>
+      <button mat-icon-button (click)="onLulitiKulgnavi()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div><a routerLink="/">LOGO</a></div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <ul fxLayout fxLayoutGap="10px" class="navigatsiooni-uksused">
+        <li><a routerLink="/registreerimine">Registreeru</a></li>
+        <li><a routerLink="/sisselogimine">Logi sisse</a></li>
+        <li><a routerLink="/treening">Trenn</a></li>
+        <li><a>Logi välja</a></li>
+      </ul>
+    </div>
+  </mat-toolbar>
