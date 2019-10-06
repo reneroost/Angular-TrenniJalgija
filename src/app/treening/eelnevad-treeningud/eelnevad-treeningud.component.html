@@ -1,1 +1,43 @@
-<p>eelnevad-treeningud works!</p>
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="40%">
+    <input
+      matInput type="text"
+      (keyup)="filtreeri($event.target.value)"
+      placeholder="Filtreeri">
+  </mat-form-field>
+</div>
+
+<mat-table [dataSource]="andmeteAllikas" matSort>
+  <ng-container matColumnDef="kuupaev" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Kuupäev</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.kuupaev | date }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nimi">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Nimi</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.nimi }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="kalorid">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Kalorid</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.kalorid | number}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="kestus">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Kestus</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.kestus | number }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="olek">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Olek</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.olek }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="kuvatudTulbad"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: kuvatudTulbad;"></mat-row>
+</mat-table>
+
+<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

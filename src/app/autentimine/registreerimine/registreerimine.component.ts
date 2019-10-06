@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AutentimineService } from '../autentimine.service';
 
 @Component({
   selector: 'app-registreerimine',
@@ -9,7 +10,7 @@ import { NgForm } from '@angular/forms';
 export class RegistreerimineComponent implements OnInit {
   maksimumKuupaev;
 
-  constructor() { }
+  constructor(private autentimineService: AutentimineService) { }
 
   ngOnInit() {
     this.maksimumKuupaev = new Date();
@@ -17,7 +18,10 @@ export class RegistreerimineComponent implements OnInit {
   }
 
   onEsitatud(vorm: NgForm) {
-    console.log(vorm);
+    this.autentimineService.registreeriKasutaja({
+      email: vorm.value.email,
+      parool: vorm.value.parool
+    });
   }
 
 }

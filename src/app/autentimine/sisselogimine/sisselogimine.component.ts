@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AutentimineService } from '../autentimine.service';
 
 @Component({
   selector: 'app-sisselogimine',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class SisselogimineComponent implements OnInit {
   logimiseVorm: FormGroup;
 
-  constructor() { }
+  constructor(private autentimineService: AutentimineService) { }
 
   ngOnInit() {
     this.logimiseVorm = new FormGroup({
@@ -19,7 +20,10 @@ export class SisselogimineComponent implements OnInit {
   }
 
   onEsitatud() {
-    console.log(this.logimiseVorm);
+    this.autentimineService.logiSisse({
+      email: this.logimiseVorm.value.email,
+      parool: this.logimiseVorm.value.parool
+    });
   }
 
 }

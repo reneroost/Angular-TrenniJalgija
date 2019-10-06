@@ -17,6 +17,8 @@ import { PraeguneTreeningComponent } from './treening/praegune-treening/praegune
 import { EelnevadTreeningudComponent } from './treening/eelnevad-treeningud/eelnevad-treeningud.component';
 import { TreeningComponent } from './treening/treening.component';
 import { PeataTreeningComponent } from './treening/praegune-treening/peata-treening.component';
+import { AutentimineService } from './autentimine/autentimine.service';
+import { TreeningService } from './treening/treening.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,7 @@ import { PeataTreeningComponent } from './treening/praegune-treening/peata-treen
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AutentimineService, TreeningService],
   bootstrap: [AppComponent],
   entryComponents: [PeataTreeningComponent]
 })

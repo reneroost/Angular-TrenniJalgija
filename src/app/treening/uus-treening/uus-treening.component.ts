@@ -1,4 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TreeningService } from '../treening.service';
+import { Harjutus } from '../harjutus.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-uus-treening',
@@ -6,15 +9,16 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./uus-treening.component.css']
 })
 export class UusTreeningComponent implements OnInit {
-  @Output() treeningAlusta = new EventEmitter<void>();
+  harjutused: Harjutus[] = [];
 
-  constructor() { }
+  constructor(private treeningService: TreeningService) { }
 
   ngOnInit() {
+    this.harjutused = this.treeningService.saaSaadaolevadHarjutused();
   }
 
-  onAlustaTreeningut() {
-    this.treeningAlusta.emit();
+  onAlustaTreeningut(vorm: NgForm) {
+    this.treeningService.alustaHarjutust(vorm.value.harjutus);
   }
 
 }

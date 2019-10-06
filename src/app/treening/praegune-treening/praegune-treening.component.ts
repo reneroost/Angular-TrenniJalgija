@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { PeataTreeningComponent } from './peata-treening.component';
+import { TreeningService } from '../treening.service';
 
 @Component({
   selector: 'app-praegune-treening',
@@ -8,23 +9,24 @@ import { PeataTreeningComponent } from './peata-treening.component';
   styleUrls: ['./praegune-treening.component.css']
 })
 export class PraeguneTreeningComponent implements OnInit {
-  @Output() treeninguLopp = new EventEmitter();
   progress = 0;
   taimer: number;
 
-  constructor(private dialoog: MatDialog) { }
+  constructor(private dialoog: MatDialog, private treeningService: TreeningService) { }
 
   ngOnInit() {
     this.kaitaTaimerit();
   }
 
   kaitaTaimerit() {
+    const samm = this.treeningService.saaKaimasolevHarjutus().kestus / 100 * 1000;
     this.taimer = window.setInterval(() => {
-      this.progress = this.progress + 5;
+      this.progress = this.progress + 1;
       if (this.progress >= 100) {
+        this.treeningService.lopetaHarjutus();
         clearInterval(this.taimer);
       }
-    }, 200);
+    }, samm);
   }
 
   onPeatu() {
@@ -37,7 +39,7 @@ export class PraeguneTreeningComponent implements OnInit {
 
     dialoogViit.afterClosed().subscribe(vastus => {
       if (vastus) {
-        this.treeninguLopp.emit();
+        this.treeningService.tyhistaHarjutus(this.progress);
       } else {
         this.kaitaTaimerit();
       }
