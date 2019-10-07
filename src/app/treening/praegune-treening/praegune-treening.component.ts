@@ -19,7 +19,7 @@ export class PraeguneTreeningComponent implements OnInit {
   }
 
   kaitaTaimerit() {
-    const samm = this.treeningService.saaKaimasolevHarjutus().kestus / 100 * 1000;
+    const samm = this.treeningService.saaKaimasolevHarjutus().kestus / 100 * 100;
     this.taimer = window.setInterval(() => {
       this.progress = this.progress + 1;
       if (this.progress >= 100) {

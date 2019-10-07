@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
@@ -19,6 +21,7 @@ import { TreeningComponent } from './treening/treening.component';
 import { PeataTreeningComponent } from './treening/praegune-treening/peata-treening.component';
 import { AutentimineService } from './autentimine/autentimine.service';
 import { TreeningService } from './treening/treening.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { TreeningService } from './treening/treening.service';
     AppMarsruutimineModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [AutentimineService, TreeningService],
   bootstrap: [AppComponent],

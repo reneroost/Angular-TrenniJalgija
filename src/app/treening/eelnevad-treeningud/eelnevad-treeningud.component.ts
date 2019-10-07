@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 import { Harjutus } from '../harjutus.model';
 import { TreeningService } from '../treening.service';
@@ -9,16 +10,21 @@ import { TreeningService } from '../treening.service';
   templateUrl: './eelnevad-treeningud.component.html',
   styleUrls: ['./eelnevad-treeningud.component.css']
 })
-export class EelnevadTreeningudComponent implements OnInit, AfterViewInit {
+export class EelnevadTreeningudComponent implements OnInit, AfterViewInit, OnDestroy {
   kuvatudTulbad = ['kuupaev', 'nimi', 'kestus', 'kalorid', 'olek'];
   andmeteAllikas = new MatTableDataSource<Harjutus>();
+  private harjutusedMuudetudSubscription: Subscription;
 
   @ViewChild(MatSort, {static: false}) sorteeri: MatSort;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   constructor(private treeningService: TreeningService) { }
 
   ngOnInit() {
-    this.andmeteAllikas.data = this.treeningService.saaLopetatudVoiTyhistatudHarjutused();
+    this.harjutusedMuudetudSubscription = this.treeningService.sooritatudHarjutusedMuudetud.subscribe(
+      (harjutused: Harjutus[]) => {
+        this.andmeteAllikas.data = harjutused;
+      });
+    this.treeningService.tombaLopetatudVoiTyhistatudHarjutused();
   }
 
   ngAfterViewInit() {
@@ -28,5 +34,9 @@ export class EelnevadTreeningudComponent implements OnInit, AfterViewInit {
 
   filtreeri(filtriVaartus: string) {
     this.andmeteAllikas.filter = filtriVaartus.trim().toLowerCase();
+  }
+
+  ngOnDestroy() {
+    this.harjutusedMuudetudSubscription.unsubscribe()
   }
 }
