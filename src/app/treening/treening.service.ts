@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { Harjutus } from './harjutus.model';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -12,11 +13,12 @@ export class TreeningService {
   sooritatudHarjutusedMuudetud = new Subject<Harjutus[]>();
   private saadaolevadHarjutused: Harjutus[] = [];
   private kaimasolevHarjutus: Harjutus;
+  private firebaseSubs: Subscription[] = [];
 
   constructor(private andmebaas: AngularFirestore) {}
 
   tombaSaadaolevadHarjutused() {
-    this.andmebaas
+    this.firebaseSubs.push(this.andmebaas
       .collection('saadaolevadHarjutused')
       .snapshotChanges()
       .pipe(map(dokMassiiv => {
@@ -32,7 +34,7 @@ export class TreeningService {
       .subscribe((harjutused: Harjutus[]) => {
         this.saadaolevadHarjutused = harjutused;
         this.harjutusedMuudetud.next([...this.saadaolevadHarjutused]);
-      });
+      }));
   }
 
   alustaHarjutust(valitudId: string) {
@@ -68,12 +70,16 @@ export class TreeningService {
   }
 
   tombaLopetatudVoiTyhistatudHarjutused() {
-    this.andmebaas
+    this.firebaseSubs.push(this.andmebaas
       .collection('sooritatudHarjutused')
       .valueChanges()
       .subscribe((harjutused: Harjutus[]) => {
         this.sooritatudHarjutusedMuudetud.next(harjutused);
-      });
+      }));
+  }
+
+  tyhistaSubscriptionid() {
+    this.firebaseSubs.forEach(sub => sub.unsubscribe());
   }
 
   lisaAndmedAndmebaasi(harjutus: Harjutus) {
